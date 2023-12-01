@@ -1,0 +1,45 @@
+.contenedor-tarjetas-index {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.tarjetas-index {
+    margin: 1rem;
+    flex-basis: 300px;
+}
+
+.valores {
+    display: flex;
+    flex-direction: column;
+}
+
+.mision {
+    color: whitesmoke;
+    background-color: #4D63B9;
+}
+
+.vision {
+    background-color: lightgray;
+}
+
+.titulo-section {
+    margin: 1rem;
+}
+
+
+@media (min-width: 768px) {
+    .valores {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: 995px) {
+    .tarjetas-index {
+        flex-basis: 20%;
+    }
+    
+}

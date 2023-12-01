@@ -1,0 +1,17 @@
+header {
+    background: linear-gradient(darkblue, blue);
+    color: whitesmoke;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 120px;
+}
+
+.logo img {
+    width: 100%;
+}

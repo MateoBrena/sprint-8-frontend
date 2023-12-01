@@ -1,0 +1,59 @@
+.menu-desplegado {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .menu-desplegado {
+        display: inline-block;
+        min-width: 230px;
+    }
+
+    .menu-desplegado ul {
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        list-style-type: none
+    }
+    
+    .menu-desplegado ul li {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .menu-desplegado a {
+        color: #4D63B9;
+        display: inline-block;
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+    
+    #opciones-transferencias div a{
+        font-size: 1rem;
+    }
+
+    .menu-desplegado a:focus, .menu-desplegado a:hover {
+        color: #4D63B9;
+    }
+    
+    #transfer-collapse-button {
+        background-color: white;
+        border: none;
+        color: #4D63B9;
+        font-size: 1.5rem;
+        padding: 0px;
+    }
+
+    #prestamos-collapse-button {
+        background-color: white;
+        border: none;
+        color: #4D63B9;
+        font-size: 1.5rem;
+        padding: 0px;
+    }
+
+    #opciones-prestamos div a{
+        font-size: 1rem;
+    }
+}

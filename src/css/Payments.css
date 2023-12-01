@@ -1,0 +1,19 @@
+#pagos {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .tabla-bootstrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    #tabla-pago {
+        width: 80%;
+    }
+}

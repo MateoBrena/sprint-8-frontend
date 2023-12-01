@@ -1,0 +1,8 @@
+#nuevo-prestamo{
+    display: flex;
+    flex-direction: column;
+}
+
+#nuevo-prestamo input{
+    margin: 1rem;
+}

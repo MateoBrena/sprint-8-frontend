@@ -1,0 +1,16 @@
+#transferencias {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#tabla-pago {
+    width: 80%;
+}
+
+@media (max-width: 450px) {
+    .oculto {
+        display: none;
+    }
+}

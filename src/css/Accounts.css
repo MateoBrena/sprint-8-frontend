@@ -1,0 +1,31 @@
+.contenedor-cuentas {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cada-cuenta {
+    width: 80%;
+    margin: 1rem;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .contenedor-cuentas {
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+    .contenedor-cuentas .cada-cuenta {
+        width: 30vw;
+    }
+
+    .principal {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0px;
+    }
+}

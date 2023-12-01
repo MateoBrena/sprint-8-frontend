@@ -1,0 +1,67 @@
+.conversor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: lightgray;
+    margin: 2rem;
+    border-radius: 25px;
+    box-shadow: 16px 10px 30px -17px rgba(0,0,0,0.3);
+}
+
+.sin-borde {
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.sin-borde-disabled {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.sin-borde:focus {
+    outline: none;
+    border-bottom: 2.4px solid darkblue;
+}
+
+.contenedor_invertir {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#botoninvertir {
+    font-weight: bold;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 100%;
+    color: whitesmoke;
+    background-color: darkblue;
+}
+
+.conv-sel {
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.conv-sel:focus {
+    outline: none
+}
+
+
+@media (min-width: 768px) {
+    .conversor {
+        max-width: 50vw;
+        position: relative;
+        left: 10%;
+    }
+}

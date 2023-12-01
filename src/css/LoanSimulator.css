@@ -1,0 +1,105 @@
+.simulador {
+    padding: 1rem;
+    background-color: lightgray;
+    margin: 2rem;
+    border-radius: 25px;
+    box-shadow: 16px 10px 30px -17px rgba(0,0,0,0.3);
+}
+
+.header-centre {
+    text-align: center;
+    margin: 1rem;
+}
+
+.simulador label{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.simulador input {
+    font-size: 20px;
+    padding: 2px 15px;
+}
+
+.contenedor-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.contenedor-inputs input {
+    width: 100%;
+}
+
+.tiempo input {
+    width: 55%;
+}
+
+.tiempo select {
+    width: 35%;
+    border: none;
+    padding: 5px;
+    margin-left: 5%;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.tiempo select:focus {
+    outline: none
+}
+
+.buttons-wrapper {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.calcular {
+    display: inline-block;
+    background-color: darkblue;
+    color: whitesmoke;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#resultado {
+    background-color: lightgray;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#resultado div {
+    margin-bottom: 10px;
+}
+
+#resultado span {
+    font-weight: 500;
+}
+
+.sin-borde {
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 5px;
+}
+
+.sin-borde:focus {
+    outline: none;
+    border-bottom: 2.4px solid darkblue;
+}
+
+#alerta {
+    color: red;
+}
+
+@media (min-width: 768px) {
+    .simulador{
+        position: relative;
+        left: 10%;
+    }
+}
