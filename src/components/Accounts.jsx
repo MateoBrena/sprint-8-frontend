@@ -1,16 +1,23 @@
 import "../css/Accounts.css"
 import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import Cookies from 'js-cookie'
 
 export default function Accounts() {
     const [cuentas, setCuentas] = useState([])
     const [tarjetas, setTarjetas] = useState([])
+    const navigate = useNavigate()
+    const id = Cookies.get("ID");
+
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/clientes/1/cuentas/', 
+        if (id === undefined) {
+            navigate("/login");
+        } else{
+        axios.get(`http://127.0.0.1:8000/api/clientes/${id}/cuentas/`, 
         {auth: {
             username: 'admin',
             password: 'admin'
@@ -18,10 +25,13 @@ export default function Accounts() {
         .then(response => {
             setCuentas(response.data);
           });
-    }, [])
+}}, [])
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/clientes/1/tarjetas/', 
+        if (id === undefined) {
+            navigate("/login");
+        } else {
+        axios.get(`http://127.0.0.1:8000/api/clientes/${id}/tarjetas/`, 
         {auth: {
             username: 'admin',
             password: 'admin'
@@ -29,7 +39,7 @@ export default function Accounts() {
         .then(response => {
             setTarjetas(response.data);
           });
-    }, [])
+}}, [])
 
     return (
         <>

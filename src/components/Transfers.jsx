@@ -1,8 +1,32 @@
 import "../css/Transfers.css"
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
+import { useEffect, useState } from "react";
+import axios from 'axios';
 import Navbar from "./Navbar";
 import Header from "./Header";
 
+
 export default function Transfers() {
+
+    const [transferencias, setTransferencias] = useState([])
+    const id = Cookies.get("ID")
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (id === undefined) {
+            navigate("/login");
+        } else{
+        axios.get(`http://127.0.0.1:8000/api/clientes/${id}/transferencias/`, 
+        {auth: {
+            username: 'admin',
+            password: 'admin'
+        }})
+        .then(response => {
+            setTransferencias(response.data);
+          });
+}}, [])
+
     return (
         <>
             <Header></Header>
@@ -15,30 +39,20 @@ export default function Transfers() {
                     <thead className="table-dark">
                         <tr>
                             <th>Fecha</th>
-                            <th className="oculto">Origen</th>
                             <th className="oculto">Destinatario</th>
+                            <th className="oculto">Tipo</th>
                             <th>Monto</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>17/8/2023</td>
-                            <td className="oculto">Juan Pérez</td>
-                            <td className="oculto">Mi cuenta</td>
-                            <td className="table-success">$968.54</td>
-                        </tr>
-                        <tr>
-                            <td>7/8/2023</td>
-                            <td className="oculto">Mi cuenta</td>
-                            <td className="oculto">Matías Gonzalez</td>
-                            <td className="table-danger">$549.62</td>
-                        </tr>
-                        <tr>
-                            <td>2/8/2023</td>
-                            <td className="oculto">Juliana Martínez</td>
-                            <td className="oculto">Mi cuenta</td>
-                            <td className="table-success">$358.38</td>
-                        </tr>
+                        { transferencias.map(transferencia => (
+                            <tr key={transferencia.id}>
+                                <td>{transferencia.fecha}</td>
+                                <td className="oculto">{transferencia.destinatario}</td>
+                                <td className="oculto">{transferencia.tipo}</td>
+                                {transferencia.tipo === "Saliente" ? <td className="table-danger">${transferencia.monto}</td> : <td className="table-success">${transferencia.monto}</td>}
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

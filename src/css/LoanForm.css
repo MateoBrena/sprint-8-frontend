@@ -6,3 +6,16 @@
 #nuevo-prestamo input{
     margin: 1rem;
 }
+
+.contenido{
+    width: 70%;
+    margin: auto;
+}
+
+@media (min-width: 768px) {
+    
+    .contenido {
+        margin-top: 2rem;
+        margin-left: 2rem;
+    }
+}

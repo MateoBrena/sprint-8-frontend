@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/LoanSimulator.css"
 import Navbar from "./Navbar";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 export default function LoanSimulator(){
     const [capital, setCapital] = useState("")
@@ -13,8 +15,14 @@ export default function LoanSimulator(){
     const interesCalculado = duracion === "year" ?  (capital*interes*tiempo) / 100 : (capital*interes*tiempo) / 1200
     const totalCalculado = parseInt(capital)
     const total = parseInt(totalCalculado+interesCalculado)
-    
-    
+    const navigate = useNavigate()
+    const id = Cookies.get("ID") 
+
+    useEffect(() => {
+        if (id === undefined) {
+            navigate("/login");
+        } else{
+    }}, [])
     
     const handleClick = () => {
         setMostrarAlerta(false)

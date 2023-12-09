@@ -3,13 +3,20 @@ import axios from 'axios';
 import Header from './Header'
 import Navbar from './Navbar'
 import "../css/Perfil.css"
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function Perfil() {
 
     const [perfil, setPerfil] = useState(null)
+    const id = Cookies.get("ID")
+    const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/clientes/1/', 
+        if (id === undefined) {
+            navigate("/login");
+        } else{
+        axios.get(`http://127.0.0.1:8000/api/clientes/${id}/`, 
         {auth: {
             username: 'admin',
             password: 'admin'
@@ -17,7 +24,7 @@ export default function Perfil() {
         .then(response => {
             setPerfil(response.data);
           });
-    }, [])
+    }}, [])
 
     return (
         <>

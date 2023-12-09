@@ -1,15 +1,30 @@
 import "../css/Navbar.css"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 
 export default function Navbar() {
 
     const [open, setOpen] = useState(false);
-    const [abierto, setAbierto] = useState(false)
-  
+    const [abierto, setAbierto] = useState(false);
+    const [removeCookie, setRemoveCookie] = useState(false);
+    const navigate = useNavigate();
+    
+    function handleLogOut() {
+        setRemoveCookie(true)
+    }
+
+    useEffect(() => {
+        if (removeCookie) {
+            Cookies.remove('ID')
+            Cookies.remove('Nombre')
+            navigate("/");
+        }
+    },[removeCookie])
+
     return (
         <>
             <nav className="menu-desplegado">
@@ -42,6 +57,7 @@ export default function Navbar() {
                         </div>
                     </Collapse>
                     <li><Link to="/perfil"><i className="fa-solid fa-user"></i> Mi perfil</Link></li>
+                    <li><Button id="transfer-collapse-button" onClick={handleLogOut}><i class="fa-solid fa-circle-xmark"></i> Cerrar Sesión</Button></li>
                 </ul>
             </nav >
         </>

@@ -2,15 +2,21 @@ import "../css/Accounts.css"
 import Navbar from "./Navbar";
 import Header from "./Header";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Cookies from "js-cookie";
 
 
 export default function PrestamosCliente() {
-
+    const id = Cookies.get("ID")
     const [prestamos, setPrestamos] = useState([])
+    const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/clientes/1/prestamos/', 
+        if (id === undefined) {
+            navigate("/login");
+        } else{
+        axios.get(`http://127.0.0.1:8000/api/clientes/${id}/prestamos/`, 
         {auth: {
             username: 'admin',
             password: 'admin'
@@ -18,7 +24,7 @@ export default function PrestamosCliente() {
         .then(response => {
             setPrestamos(response.data);
           });
-    }, [])
+    }}, [])
 
     return (
         <>

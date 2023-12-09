@@ -2,14 +2,21 @@ import "../css/Conversor.css"
 import Navbar from "./Navbar";
 import { useState, useEffect} from "react";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function Conversor() {
     const [montoUno, setmontoUno] = useState("")
     const [monedaUno, setMonedaUno] = useState("USD")
     const [monedaDos, setMonedaDos] = useState("ARS")
     const [precios,setPrecios] = useState([])
+    const id = Cookies.get("ID")
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if (id === undefined) {
+            navigate("/login");
+        } else{
       fetch(`https://api.exchangerate-api.com/v4/latest/${monedaUno}`)
       .then(response => response.json())
       .then( data => {
@@ -18,7 +25,7 @@ export default function Conversor() {
       .catch(error => {
         console.log(error("Error: ", error))
       })
-    },[monedaUno])
+    }},[monedaUno])
 
     const calculateEvent =()=>{
         console.log("Intercambiando")

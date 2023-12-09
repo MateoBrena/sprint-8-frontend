@@ -2,7 +2,9 @@ import Form from "react-bootstrap/Form"
 import "../css/NewTransfer.css"
 import Navbar from "./Navbar";
 import Header from "./Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 export default function NewTransfers() {
     const [destinatario, setDestinatario] = useState("CBU")
@@ -10,6 +12,14 @@ export default function NewTransfers() {
     const [motivo, setMotivo] = useState("")
     const [monto, setMonto] = useState("")
     const [referencia, setReferencia] = useState("")
+    const id = Cookies.get("ID")
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (id === undefined) {
+            navigate("/login");
+        } else{
+    }}, [])
 
 
     return (

@@ -1,8 +1,31 @@
 import "../css/Payments.css";
 import Navbar from "./Navbar";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 export default function Payments() {
+
+    const [pagos, setPagos] = useState([])
+    const id = Cookies.get("ID")
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (id === undefined) {
+            navigate("/login");
+        } else{
+        axios.get(`http://127.0.0.1:8000/api/clientes/${id}/pagos/`, 
+        {auth: {
+            username: 'admin',
+            password: 'admin'
+        }})
+        .then(response => {
+            setPagos(response.data);
+          });
+}}, [])
+
     return (
         <>
             <Header></Header>
@@ -15,30 +38,20 @@ export default function Payments() {
                     <thead className="table-dark">
                         <tr>
                             <th>Fecha</th>
-                            <th className="oculto">Medio de pago</th>
                             <th className="oculto">Beneficiario</th>
+                            <th className="oculto">Rubro</th>
                             <th>Importe</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>17/8/2023</td>
-                            <td className="oculto">Débito</td>
-                            <td className="oculto">ITBA</td>
-                            <td>$968.54</td>
-                        </tr>
-                        <tr>
-                            <td>7/8/2023</td>
-                            <td className="oculto">Crédito</td>
-                            <td className="oculto">Carrefour</td>
-                            <td>$549.62</td>
-                        </tr>
-                        <tr>
-                            <td>2/8/2023</td>
-                            <td className="oculto">Débito</td>
-                            <td className="oculto">YPF S.A</td>
-                            <td>$358.38</td>
-                        </tr>
+                    { pagos.map(pago => (
+                            <tr key={pago.id}>
+                                <td>{pago.fecha}</td>
+                                <td className="oculto">{pago.beneficiario}</td>
+                                <td className="oculto">{pago.rubro}</td>
+                                <td>${pago.monto}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
